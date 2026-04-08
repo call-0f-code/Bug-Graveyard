@@ -1,12 +1,16 @@
+def safe_join(value):
+    if isinstance(value, list):
+        return " ".join(value)
+    if isinstance(value, str):
+        return value
+    return ""
 def build_text(data):
-    # Safe extraction
     title = data.get("title", "")
     description = data.get("description", "")
-    tags = data.get("tags", [])
-    tech_stack = data.get("techStack", [])
+    tags_text = safe_join(data.get("tags"))
+    tech_text = safe_join(data.get("techStack"))
     difficulty = data.get("difficulty", "")
-    tags_text = " ".join(tags)
-    tech_text = " ".join(tech_stack)
+    
     text = f"""
     BUG TITLE: {title}. {title}.
     BUG DESCRIPTION: {description}.

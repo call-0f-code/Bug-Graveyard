@@ -1,11 +1,15 @@
 const Bug = require("../models/Bug");
 const Vector = require("../models/Vector");
 const { cosineSimilarity } = require("../utils/similarityScore");
+const mongoose = require("mongoose");
 
 exports.getSimilarBugs = async (req, res) => {
   try {
     const bugId = req.params.id;
-    
+    if (!mongoose.Types.ObjectId.isValid(bugId)) {
+      return res.status(400).json({ message: "Invalid bugId" });
+    }
+
     const currentVectorDoc = await Vector.findOne({ bugId });
 
     if (!currentVectorDoc) {

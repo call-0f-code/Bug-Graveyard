@@ -7,12 +7,8 @@ exports.getEmbedding = async (bug) => {
       {
         title: bug.title,
         description: bug.description,
-        tags: Array.isArray(bug.tags)
-          ? bug.tags.join(", ")
-          : bug.tags,
-        techStack: Array.isArray(bug.techStack)
-          ? bug.techStack.join(", ")
-          : bug.techStack,
+        tags: bug.tags,
+        techStack: bug.techStack,
         difficulty: bug.difficulty
       }
     );
