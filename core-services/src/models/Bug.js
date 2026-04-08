@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
- 
-const bugSchema = new mongoose.Schema(
-  {
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
+
+const bugSchema = new mongoose.Schema({
   _id: ObjectId,
   title: {
     type: String,
@@ -22,8 +22,7 @@ const bugSchema = new mongoose.Schema(
     type: String,
     lowercase: true,
     trim: true
-  }
-  ],
+  }],
   difficulty: {
     type: String,
     enum: ["EASY", "MEDIUM", "HARD"],
@@ -64,18 +63,16 @@ const bugSchema = new mongoose.Schema(
     type: Boolean,
     default: true
   },
-
   isAbusive: {
     type: Boolean,
     default: false
   },
-
   refundProcessed: {
     type: Boolean,
     default: false
   },
   createdAt: Date,
   updatedAt: Date
-}
-);
-export default mongoose.model("Bug", bugSchema);
+});
+
+module.exports = mongoose.model("Bug", bugSchema);
