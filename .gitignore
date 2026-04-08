@@ -13,3 +13,6 @@ dist-ssr/
 Thumbs.db
 
 .vscode/
+
+__pycache__/
+*.pyc

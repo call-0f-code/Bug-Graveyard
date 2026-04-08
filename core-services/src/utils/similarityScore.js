@@ -1,0 +1,15 @@
+exports.cosineSimilarity = (A, B) => {
+  if (!A || !B || A.length !== B.length) return 0;
+  let dot = 0.0;
+  let normA = 0.0;
+  let normB = 0.0;
+
+  for (let i = 0; i < A.length; i++) {
+    dot += A[i] * B[i];
+    normA += A[i] * A[i];
+    normB += B[i] * B[i];
+  }
+  const denom = Math.sqrt(normA) * Math.sqrt(normB);
+  if (denom === 0) return 0;
+  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+};
