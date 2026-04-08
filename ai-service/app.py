@@ -15,7 +15,6 @@ def embed():
             return jsonify({"error": "Invalid input"}), 400
         text = build_text(data)
         embedding = get_embedding(text)
-        text = build_text(data)
         return jsonify({"embedding": embedding}), 200
     except Exception as e:
         print("Error in /embed:", str(e))
@@ -23,5 +22,5 @@ def embed():
     
 if __name__ == "__main__":
     PORT = int(os.getenv("PORT", 3000))
-    DEBUG = os.getenv("FLASK_DEBUG", "false").lower() == ["true", "1", "yes"]
+    DEBUG = os.getenv("FLASK_DEBUG", "false").lower() in ["true", "1", "yes"]
     app.run(port=PORT, debug=DEBUG)
